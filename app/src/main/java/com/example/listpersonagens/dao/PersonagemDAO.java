@@ -44,7 +44,7 @@ public class PersonagemDAO {
         return new ArrayList<>(personagens);
     }
 
-    public void remove(Personagem personagem){
+    public void remove(Personagem personagem){ //exclusão de personagem
         Personagem personagemDevolvido = buscarPersonagemId(personagem);
         if(personagemDevolvido != null){
             personagens.remove(personagemDevolvido);

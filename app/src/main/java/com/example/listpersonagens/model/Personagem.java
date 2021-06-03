@@ -33,7 +33,7 @@ public class Personagem implements Serializable { //faz importação das depend�
     public Personagem(){
         //possibilita enviar formulário vazio
     }
-
+        //sets e gets das variáveis dos campos do formulário
     public String getNome() {
         return nome;
     }

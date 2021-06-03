@@ -91,22 +91,22 @@ public class ListaPersonagemActivity extends AppCompatActivity {
                 .setMessage("Tem certeza que deseja remover Personagem")
                 .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                    public void onClick(DialogInterface dialog, int which) { //se "sim" excluí personagem selecionado
                         AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
                         Personagem personagemEscolhido = adapter.getItem(menuInfo.position); //personagem selecionado pelo user
                         remove(personagemEscolhido); //remove o personagem selecionado
                     }
                 })
-                .setNegativeButton("Não", null)
+                .setNegativeButton("Não", null) //se "não" retorna
                 .show();
         }
-        return super.onContextItemSelected(item);
+        return super.onContextItemSelected(item); //busca item selecionado
     }
 
     private void configuraLista() {
         //determina que a tela vai exibir a lista com todos os personagens criados
         ListView listaDePersonagens = findViewById(R.id.activity_main_lista_personagem);
-        //final List<Personagem> personagens = dao.todos();
+        //opções dentro da lista
         listaDePersonagens(listaDePersonagens);
         configuraItemPorClick(listaDePersonagens);
         registerForContextMenu(listaDePersonagens);

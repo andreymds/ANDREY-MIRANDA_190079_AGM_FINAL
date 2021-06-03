@@ -21,8 +21,11 @@ import static com.example.listpersonagens.ui.activities.ConstantesActivities.CHA
 
 public class FormularioPersonagemActivity extends AppCompatActivity {
 
+    //título da aba
     private static final String TITULO_APPBAR_EDITA_PERSONAGEM = "Edita Personagem";
     private static final String TITULO_APPBAR_NOVO_PERSONAGEM = "Novo Personagem";
+
+    //variáveis que correspondem aos campos do formulário
     private EditText campoNome;
     private EditText campoAltura;
     private EditText campoNascimento;
@@ -36,13 +39,16 @@ public class FormularioPersonagemActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        //cria um novo item na lista ao salvar o formulário
         getMenuInflater().inflate(R.menu.activity_formulario_personagem_menu_salvar, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        int itemId = item.getItemId();
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) { //vai ao item da lista
+        int itemId = item.getItemId(); //exibe as infos do item selecionado
+
+        //ao clicar em salvar fecha a aba do formulário e vai à lista
         if(itemId == R.id.activity_formulario_personagem_menu_salvar){
             finalizarFomulario();
         }
@@ -50,10 +56,11 @@ public class FormularioPersonagemActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) { //chamado ao iniciar o programa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_formulario_personagem);
 
+        //métodos chamados ao iniciar a aplicação
         inicializacaoCampos();
         configBotaoAdd();
         carregaPersonagem();
@@ -63,6 +70,7 @@ public class FormularioPersonagemActivity extends AppCompatActivity {
         Intent dados = getIntent(); //instancia os dados
         if(dados.hasExtra(CHAVE_PERSONAGEM)) {
             setTitle(TITULO_APPBAR_EDITA_PERSONAGEM);
+
             //"dados" busca as informações do personagem
             personagem = (Personagem) dados.getSerializableExtra(CHAVE_PERSONAGEM);
             preencheCampos();
@@ -73,6 +81,7 @@ public class FormularioPersonagemActivity extends AppCompatActivity {
     }
 
     private void preencheCampos() {
+        //define para que variável vai cada campo do forms preenchido
         campoNome.setText(personagem.getNome());
         campoAltura.setText(personagem.getAltura());
         campoNascimento.setText(personagem.getNascimento());
@@ -84,7 +93,7 @@ public class FormularioPersonagemActivity extends AppCompatActivity {
     }
 
     private void configBotaoAdd() {
-        Button botaoSalvar = findViewById(R.id.button_salvar);
+        Button botaoSalvar = findViewById(R.id.button_salvar); //busca o botão no xml
 
         /*Instanciando uma View*/
         botaoSalvar.setOnClickListener(new View.OnClickListener() {
@@ -97,7 +106,7 @@ public class FormularioPersonagemActivity extends AppCompatActivity {
         });
     }
 
-    private void finalizarFomulario() {
+    private void finalizarFomulario() { //condições de finalização do formulário
         ArmazenaValoresClick();
         if(personagem.IdValido()){
             dao.editar(personagem);
@@ -119,13 +128,13 @@ public class FormularioPersonagemActivity extends AppCompatActivity {
         campoRg= findViewById(R.id.edittext_rg);
         campoGenero= findViewById(R.id.edittext_genero);
 
-        //mascaras para formatação dos inputs
+        //máscaras para formatação dos inputs
         SimpleMaskFormatter smfAltura = new SimpleMaskFormatter("N,NN");
         MaskTextWatcher mtwAltura = new MaskTextWatcher(campoAltura, smfAltura);
         campoAltura.addTextChangedListener(mtwAltura);
 
-        SimpleMaskFormatter smfNascimento = new SimpleMaskFormatter("NN/NN/NNNN");
-        MaskTextWatcher mtwNascimento = new MaskTextWatcher(campoNascimento, smfNascimento);
+        SimpleMaskFormatter smfNascimento = new SimpleMaskFormatter("NN/NN/NNNN"); //formato da máscara
+        MaskTextWatcher mtwNascimento = new MaskTextWatcher(campoNascimento, smfNascimento); //linka o formato com o campo
         campoNascimento.addTextChangedListener(mtwNascimento);
 
         SimpleMaskFormatter smfTelefone = new SimpleMaskFormatter("(NN)NNNNN-NNNN");
