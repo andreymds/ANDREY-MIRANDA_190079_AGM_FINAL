@@ -39,6 +39,49 @@
         android:hint="Nascimento"
         android:inputType="date" />
 
+    <EditText
+            android:id="@+id/edittext_telefone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:ems="10"
+            android:hint="Telefone"
+            android:inputType="phone"/>
+
+    <EditText
+        android:id="@+id/edittext_endereco"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:ems="10"
+        android:hint="Endereço"/>
+
+    <EditText
+        android:id="@+id/edittext_cep"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:ems="10"
+        android:hint="CEP"
+        android:inputType="phone" />
+
+    <EditText
+        android:id="@+id/edittext_rg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:ems="10"
+        android:hint="RG"
+        android:inputType="phone" />
+
+    <EditText
+        android:id="@+id/edittext_genero"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:ems="10"
+        android:hint="Gênero"/>
+
     <Button
         android:id="@+id/button_salvar"
         android:layout_width="match_parent"
@@ -46,5 +89,7 @@
         android:layout_margin="10dp"
         android:text="SALVAR"
         android:visibility="visible"/>
+
+
     </LinearLayout>
 </ScrollView>

@@ -26,6 +26,11 @@ public class FormularioPersonagemActivity extends AppCompatActivity {
     private EditText campoNome;
     private EditText campoAltura;
     private EditText campoNascimento;
+    private EditText campoTelefone;
+    private EditText campoEndereco;
+    private EditText campoCep;
+    private EditText campoRg;
+    private EditText campoGenero;
     private final PersonagemDAO dao = new PersonagemDAO(); //nova classe
     private Personagem personagem;
 
@@ -71,6 +76,11 @@ public class FormularioPersonagemActivity extends AppCompatActivity {
         campoNome.setText(personagem.getNome());
         campoAltura.setText(personagem.getAltura());
         campoNascimento.setText(personagem.getNascimento());
+        campoTelefone.setText(personagem.getTelefone());
+        campoEndereco.setText(personagem.getEndereco());
+        campoCep.setText(personagem.getCep());
+        campoRg.setText(personagem.getRg());
+        campoGenero.setText(personagem.getGenero());
     }
 
     private void configBotaoAdd() {
@@ -96,7 +106,6 @@ public class FormularioPersonagemActivity extends AppCompatActivity {
             dao.salva(personagem);
         }
         finish();
-
     }
 
     private void inicializacaoCampos() {
@@ -104,6 +113,11 @@ public class FormularioPersonagemActivity extends AppCompatActivity {
         campoNome = findViewById(R.id.edittext_nome);
         campoAltura = findViewById(R.id.edittext_altura);
         campoNascimento = findViewById(R.id.edittext_nascimento);
+        campoTelefone = findViewById(R.id.edittext_telefone);
+        campoEndereco= findViewById(R.id.edittext_endereco);
+        campoCep= findViewById(R.id.edittext_cep);
+        campoRg= findViewById(R.id.edittext_rg);
+        campoGenero= findViewById(R.id.edittext_genero);
 
         //mascaras para formatação dos inputs
         SimpleMaskFormatter smfAltura = new SimpleMaskFormatter("N,NN");
@@ -113,6 +127,18 @@ public class FormularioPersonagemActivity extends AppCompatActivity {
         SimpleMaskFormatter smfNascimento = new SimpleMaskFormatter("NN/NN/NNNN");
         MaskTextWatcher mtwNascimento = new MaskTextWatcher(campoNascimento, smfNascimento);
         campoNascimento.addTextChangedListener(mtwNascimento);
+
+        SimpleMaskFormatter smfTelefone = new SimpleMaskFormatter("(NN)NNNNN-NNNN");
+        MaskTextWatcher mtwTelefone = new MaskTextWatcher(campoTelefone, smfTelefone);
+        campoTelefone.addTextChangedListener(mtwTelefone);
+
+        SimpleMaskFormatter smfRg = new SimpleMaskFormatter("NN.NNN.NNN-N");
+        MaskTextWatcher mtwRg = new MaskTextWatcher(campoRg, smfRg);
+        campoRg.addTextChangedListener(mtwRg);
+
+        SimpleMaskFormatter smfCep = new SimpleMaskFormatter("NNNNN-NNN");
+        MaskTextWatcher mtwCep = new MaskTextWatcher(campoCep, smfCep);
+        campoCep.addTextChangedListener(mtwCep);
     }
 
     private void ArmazenaValoresClick(){
@@ -120,10 +146,20 @@ public class FormularioPersonagemActivity extends AppCompatActivity {
         String nome = campoNome.getText().toString();
         String altura = campoAltura.getText().toString();
         String nascimento = campoNascimento.getText().toString();
+        String telefone = campoTelefone.getText().toString();
+        String endereco = campoEndereco.getText().toString();
+        String cep = campoCep.getText().toString();
+        String rg = campoRg.getText().toString();
+        String genero = campoGenero.getText().toString();
 
         //possibilita edição dos personagens salvos
         personagem.setNome(nome);
         personagem.setAltura(altura);
         personagem.setNascimento(nascimento);
+        personagem.setTelefone(telefone);
+        personagem.setEndereco(endereco);
+        personagem.setCep(cep);
+        personagem.setRg(rg);
+        personagem.setGenero(genero);
     }
 }
